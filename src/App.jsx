@@ -37,9 +37,25 @@ function ProfileCard({ profile }) {
   );
 }
 
+function GithubProfiles({ profiles, handleDeleteProfile }) {
+  return (
+    <div className="github-profiles">
+      {profiles.map((profile, i) => (
+        <div className="saved-profiles" key={`${profile.login}-${i}`}>
+          <ProfileCard profile={profile} />
+          <button onClick={() => handleDeleteProfile(profile)}>
+            Delete Profile
+          </button>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function App() {
   const [userInput, setUserInput] = useState("");
   const [profile, setProfile] = useState(null);
+  const [savedProfiles, setSavedProfiles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -71,17 +87,41 @@ function App() {
     fetchProfile(userInput);
   };
 
+  const handleAddProfile = (profile) => {
+    setSavedProfiles([...savedProfiles, profile]);
+  };
+
+  const handleDeleteProfile = (profile) => {
+    const filteredProfiles = savedProfiles.filter(
+      (p) => p.login != profile.login
+    );
+    setSavedProfiles(filteredProfiles);
+  };
+
   return (
-    <div>
+    <div className="app">
       <h1>Github Profiles</h1>
 
-      <div>
+      <div className="search">
         <input type="text" value={userInput} onChange={handleInput} />
         <button onClick={handleSearch}>Search</button>
       </div>
       {loading && <p>loading...</p>}
       {error && <p style={{ color: "red" }}>Error: {error}</p>}
-      {profile && <ProfileCard profile={profile} />}
+      {profile && (
+        <div className="search-card">
+          <ProfileCard profile={profile} />
+          <button onClick={() => handleAddProfile(profile)}>Add Profile</button>
+        </div>
+      )}
+      {savedProfiles.length > 0 && (
+        <div>
+          <GithubProfiles
+            profiles={savedProfiles}
+            handleDeleteProfile={handleDeleteProfile}
+          />
+        </div>
+      )}
     </div>
   );
 }
