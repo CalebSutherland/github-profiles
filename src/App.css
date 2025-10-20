@@ -16,14 +16,15 @@ body {
 .profile-card {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  background-color: #f5f5f5;
+  gap: 0.5rem;
+  background-color: #fafafa;
   width: fit-content;
   padding: 1rem 2rem;
-  width: 20rem;
+  width: 17rem;
   margin: 1rem 0;
   border-radius: 1rem;
   border: 1px solid #d4d4d4;
+  box-shadow: 0px 2px 5px rgb(179, 179, 179);
 }
 
 .avatar {
@@ -53,7 +54,7 @@ body {
   font-size: 0.9rem;
 }
 
-.bio {
+.profile-bio {
   height: 4rem;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -62,4 +63,10 @@ body {
   line-clamp: 3;
   -webkit-box-orient: vertical;
   line-height: 1.3rem;
+  font-size: 0.8rem;
+}
+
+.profiler-footer {
+  display: flex;
+  justify-content: space-between;
 }

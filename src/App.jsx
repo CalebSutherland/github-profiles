@@ -24,13 +24,15 @@ function ProfileCard({ profile }) {
           <p className="follower-label">following</p>
         </div>
       </div>
-      <p className="bio">{bio}</p>
-      <p>
-        <b>Public Repos:</b> {public_repos}
-      </p>
-      <a href={url} target="_blank">
-        Profile
-      </a>
+      <p className="profile-bio">{bio}</p>
+      <div className="profiler-footer">
+        <p style={{ fontSize: "0.9rem" }}>
+          <b>Public Repos:</b> {public_repos}
+        </p>
+        <a href={url} target="_blank" style={{ fontSize: "0.9rem" }}>
+          Profile
+        </a>
+      </div>
     </div>
   );
 }
